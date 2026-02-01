@@ -1,0 +1,50 @@
+@use '@/styles/design-tokens' as tokens;
+
+.skeleton {
+  background: var(--bg-tertiary);
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+.text {
+  height: 1em;
+  border-radius: tokens.$radius-sm;
+  transform-origin: 0 60%;
+  transform: scale(1, 0.6);
+}
+
+.circular {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.rectangular {
+  border-radius: tokens.$radius-md;
+  min-height: 20px;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

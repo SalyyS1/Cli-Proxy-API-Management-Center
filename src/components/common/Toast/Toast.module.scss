@@ -1,0 +1,101 @@
+@use '@/styles/design-tokens' as tokens;
+@use '@/styles/glass-mixins' as glass;
+@use '@/styles/animation-utils' as anim;
+
+.toast {
+  @include glass.glass-card();
+  display: flex;
+  align-items: center;
+  gap: tokens.$space-3;
+  padding: tokens.$space-4;
+  min-width: 300px;
+  max-width: 500px;
+  animation: slideIn 0.3s ease;
+  margin-bottom: tokens.$space-3;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message {
+  flex: 1;
+  font-size: tokens.$font-size-sm;
+  color: var(--text-primary);
+  line-height: tokens.$line-height-normal;
+}
+
+.closeButton {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: tokens.$space-1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: tokens.$radius-sm;
+  color: var(--text-secondary);
+  @include anim.transition-colors;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+// Variants
+.success {
+  border-left: 4px solid tokens.$emerald-500;
+
+  .icon {
+    color: tokens.$emerald-500;
+  }
+}
+
+.error {
+  border-left: 4px solid tokens.$color-error;
+
+  .icon {
+    color: tokens.$color-error;
+  }
+}
+
+.warning {
+  border-left: 4px solid tokens.$color-warning;
+
+  .icon {
+    color: tokens.$color-warning;
+  }
+}
+
+.info {
+  border-left: 4px solid tokens.$teal-500;
+
+  .icon {
+    color: tokens.$teal-500;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

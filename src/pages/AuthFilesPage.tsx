@@ -63,6 +63,10 @@ const TYPE_COLORS: Record<string, TypeColorSet> = {
     light: { bg: '#fff3e0', text: '#ef6c00' },
     dark: { bg: '#e65100', text: '#ffb74d' },
   },
+  copilot: {
+    light: { bg: '#e0f2f1', text: '#00695c' },
+    dark: { bg: '#004d40', text: '#4db6ac' },
+  },
   antigravity: {
     light: { bg: '#e0f7fa', text: '#006064' },
     dark: { bg: '#004d40', text: '#80deea' },

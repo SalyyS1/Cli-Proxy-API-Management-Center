@@ -1,7 +1,10 @@
 /**
- * 全局样式
+ * 全局样式 (Global Styles)
+ * Import design system foundation: tokens, animations, themes, and components
  */
 
+@use './design-tokens.scss' as tokens;
+@use './animation-utils.scss' as anim;
 @use './variables.scss' as *;
 @use './mixins.scss' as *;
 @use './reset.scss';
@@ -10,6 +13,7 @@
 @use './layout.scss';
 
 body {
+  font-family: tokens.$font-display;
   background-color: var(--bg-secondary);
   color: var(--text-primary);
   transition: background-color $transition-normal, color $transition-normal;

@@ -1,0 +1,70 @@
+@use '@/styles/design-tokens' as tokens;
+
+.grid {
+  display: grid;
+  width: 100%;
+}
+
+// Column variants
+.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+// Gap variants
+.gap-sm {
+  gap: tokens.$space-3;
+}
+
+.gap-md {
+  gap: tokens.$space-4;
+}
+
+.gap-lg {
+  gap: tokens.$space-6;
+}
+
+// Item
+.item {
+  min-width: 0; // Prevent grid blowout
+}
+
+// Item spans
+.col-span-2 {
+  grid-column: span 2;
+}
+
+.row-span-2 {
+  grid-row: span 2;
+}
+
+// Responsive
+@media (max-width: 1024px) {
+  .cols-3,
+  .cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .col-span-2 {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .cols-2,
+  .cols-3,
+  .cols-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .col-span-2 {
+    grid-column: span 1;
+  }
+}

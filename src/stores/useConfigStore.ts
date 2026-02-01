@@ -49,7 +49,30 @@ const SECTION_KEYS: RawConfigSection[] = [
   'claude-api-key',
   'vertex-api-key',
   'openai-compatibility',
-  'oauth-excluded-models'
+  'oauth-excluded-models',
+  // Server settings
+  'host',
+  'port',
+  'tls-enabled',
+  'tls-cert',
+  'tls-key',
+  'commercial-mode',
+  // Management settings
+  'allow-remote',
+  'disable-control-panel',
+  'panel-github-repository',
+  // Auth settings
+  'auth-dir',
+  'incognito-browser',
+  // Logging settings
+  'error-logs-max-files',
+  // Performance settings
+  'max-retry-interval',
+  'nonstream-keepalive-interval',
+  'streaming-keepalive-seconds',
+  'streaming-bootstrap-retries',
+  // Feature settings
+  'codex-instructions-enabled'
 ];
 
 const extractSectionValue = (config: Config | null, section?: RawConfigSection) => {
@@ -93,6 +116,46 @@ const extractSectionValue = (config: Config | null, section?: RawConfigSection) 
       return config.openaiCompatibility;
     case 'oauth-excluded-models':
       return config.oauthExcludedModels;
+    // Server settings
+    case 'host':
+      return config.host;
+    case 'port':
+      return config.port;
+    case 'tls-enabled':
+      return config.tlsEnabled;
+    case 'tls-cert':
+      return config.tlsCert;
+    case 'tls-key':
+      return config.tlsKey;
+    case 'commercial-mode':
+      return config.commercialMode;
+    // Management settings
+    case 'allow-remote':
+      return config.allowRemote;
+    case 'disable-control-panel':
+      return config.disableControlPanel;
+    case 'panel-github-repository':
+      return config.panelGithubRepository;
+    // Auth settings
+    case 'auth-dir':
+      return config.authDir;
+    case 'incognito-browser':
+      return config.incognitoBrowser;
+    // Logging settings
+    case 'error-logs-max-files':
+      return config.errorLogsMaxFiles;
+    // Performance settings
+    case 'max-retry-interval':
+      return config.maxRetryInterval;
+    case 'nonstream-keepalive-interval':
+      return config.nonstreamKeepaliveInterval;
+    case 'streaming-keepalive-seconds':
+      return config.streamingKeepaliveSeconds;
+    case 'streaming-bootstrap-retries':
+      return config.streamingBootstrapRetries;
+    // Feature settings
+    case 'codex-instructions-enabled':
+      return config.codexInstructionsEnabled;
     default:
       if (!section) return undefined;
       return config.raw?.[section];
@@ -241,6 +304,63 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
           break;
         case 'oauth-excluded-models':
           nextConfig.oauthExcludedModels = value;
+          break;
+        // Server settings
+        case 'host':
+          nextConfig.host = value;
+          break;
+        case 'port':
+          nextConfig.port = value;
+          break;
+        case 'tls-enabled':
+          nextConfig.tlsEnabled = value;
+          break;
+        case 'tls-cert':
+          nextConfig.tlsCert = value;
+          break;
+        case 'tls-key':
+          nextConfig.tlsKey = value;
+          break;
+        case 'commercial-mode':
+          nextConfig.commercialMode = value;
+          break;
+        // Management settings
+        case 'allow-remote':
+          nextConfig.allowRemote = value;
+          break;
+        case 'disable-control-panel':
+          nextConfig.disableControlPanel = value;
+          break;
+        case 'panel-github-repository':
+          nextConfig.panelGithubRepository = value;
+          break;
+        // Auth settings
+        case 'auth-dir':
+          nextConfig.authDir = value;
+          break;
+        case 'incognito-browser':
+          nextConfig.incognitoBrowser = value;
+          break;
+        // Logging settings
+        case 'error-logs-max-files':
+          nextConfig.errorLogsMaxFiles = value;
+          break;
+        // Performance settings
+        case 'max-retry-interval':
+          nextConfig.maxRetryInterval = value;
+          break;
+        case 'nonstream-keepalive-interval':
+          nextConfig.nonstreamKeepaliveInterval = value;
+          break;
+        case 'streaming-keepalive-seconds':
+          nextConfig.streamingKeepaliveSeconds = value;
+          break;
+        case 'streaming-bootstrap-retries':
+          nextConfig.streamingBootstrapRetries = value;
+          break;
+        // Feature settings
+        case 'codex-instructions-enabled':
+          nextConfig.codexInstructionsEnabled = value;
           break;
         default:
           break;

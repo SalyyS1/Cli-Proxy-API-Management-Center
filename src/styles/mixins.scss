@@ -1,8 +1,10 @@
 /**
- * SCSS 混入
+ * SCSS 混入 (SCSS Mixins)
+ * Responsive breakpoints, utility mixins, and glass effect imports
  */
 
 @use './variables.scss' as *;
+@use './glass-mixins.scss' as glass;
 
 // 响应式断点
 @mixin mobile {

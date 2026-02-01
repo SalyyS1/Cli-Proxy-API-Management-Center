@@ -1,0 +1,113 @@
+/**
+ * Design Tokens
+ * Green/Teal color palette, typography, spacing, and glass effect tokens
+ */
+
+// ===================================
+// Color Palette - Emerald
+// ===================================
+$emerald-50: #ecfdf5;
+$emerald-100: #d1fae5;
+$emerald-200: #a7f3d0;
+$emerald-300: #6ee7b7;
+$emerald-400: #34d399;
+$emerald-500: #10b981; // Primary
+$emerald-600: #059669;
+$emerald-700: #047857;
+$emerald-800: #065f46;
+$emerald-900: #064e3b;
+
+// ===================================
+// Color Palette - Teal
+// ===================================
+$teal-50: #f0fdfa;
+$teal-100: #ccfbf1;
+$teal-200: #99f6e4;
+$teal-300: #5eead4;
+$teal-400: #2dd4bf;
+$teal-500: #14b8a6; // Secondary
+$teal-600: #0d9488;
+$teal-700: #0f766e;
+$teal-800: #115e59;
+$teal-900: #134e4a;
+
+// ===================================
+// Color Palette - Cyan (Accent)
+// ===================================
+$cyan-500: #06b6d4;
+
+// ===================================
+// Semantic Colors
+// ===================================
+$color-primary: $emerald-500;
+$color-secondary: $teal-500;
+$color-accent: $cyan-500;
+$color-success: $emerald-500;
+$color-warning: #f59e0b;
+$color-error: #ef4444;
+$color-info: $teal-500;
+
+// ===================================
+// Typography Scale
+// ===================================
+$font-display: 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 24px;
+$font-size-2xl: 32px;
+$font-size-3xl: 48px;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.7;
+
+// ===================================
+// Spacing Scale (4px base)
+// ===================================
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 20px;
+$space-6: 24px;
+$space-8: 32px;
+$space-10: 40px;
+$space-12: 48px;
+$space-16: 64px;
+$space-20: 80px;
+$space-24: 96px;
+
+// ===================================
+// Border Radius
+// ===================================
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+$radius-full: 9999px;
+
+// ===================================
+// Shadows
+// ===================================
+$shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
+$shadow-elevated: 0 4px 24px rgba(0, 0, 0, 0.08);
+$shadow-floating: 0 12px 48px rgba(0, 0, 0, 0.12);
+$shadow-glow-emerald: 0 0 24px rgba(16, 185, 129, 0.2);
+$shadow-glow-teal: 0 0 24px rgba(20, 184, 166, 0.2);
+
+// ===================================
+// Glass-specific Tokens
+// ===================================
+$glass-blur-subtle: 12px;
+$glass-blur-normal: 16px;
+$glass-blur-prominent: 20px;
+$glass-saturate: 180%;

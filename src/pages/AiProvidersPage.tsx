@@ -5,6 +5,7 @@ import {
   AmpcodeSection,
   ClaudeSection,
   CodexSection,
+  CopilotSection,
   GeminiSection,
   OpenAISection,
   VertexSection,
@@ -423,6 +424,10 @@ export function AiProvidersPage() {
             onEdit={(index) => openEditor(`/ai-providers/openai/${index}`)}
             onDelete={deleteOpenai}
           />
+        </div>
+
+        <div id="provider-copilot">
+          <CopilotSection onAuthSuccess={() => void loadConfigs()} />
         </div>
       </div>
 

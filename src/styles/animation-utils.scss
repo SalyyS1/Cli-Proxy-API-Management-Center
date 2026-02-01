@@ -1,0 +1,170 @@
+/**
+ * Animation Utilities
+ * Timing functions, duration scale, transition presets, keyframes, and reduced motion support
+ */
+
+// ===================================
+// Timing Functions (Easing)
+// ===================================
+$ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+$ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+$ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+$ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// ===================================
+// Duration Scale
+// ===================================
+$duration-fast: 150ms;
+$duration-normal: 200ms;
+$duration-slow: 300ms;
+$duration-slower: 500ms;
+
+// ===================================
+// Transition Presets
+// ===================================
+@mixin transition-base {
+  transition-timing-function: $ease-out-quart;
+  transition-duration: $duration-normal;
+}
+
+@mixin transition-colors {
+  transition-property: color, background-color, border-color, box-shadow;
+  @include transition-base;
+}
+
+@mixin transition-transform {
+  transition-property: transform;
+  @include transition-base;
+}
+
+@mixin transition-all {
+  transition-property: all;
+  @include transition-base;
+}
+
+// ===================================
+// Hover Scale Effect
+// ===================================
+@mixin hover-scale($scale: 1.02) {
+  transition: transform $duration-normal $ease-out-quart;
+
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover {
+      transform: scale($scale);
+    }
+  }
+}
+
+// ===================================
+// Press Effect
+// ===================================
+@mixin press-effect {
+  transition: transform $duration-fast $ease-out-quart;
+
+  @media (prefers-reduced-motion: no-preference) {
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+// ===================================
+// Fade In Animation
+// ===================================
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@mixin animate-fade-in($duration: $duration-normal) {
+  animation: fade-in $duration $ease-out-quart;
+}
+
+// ===================================
+// Slide Up Animation
+// ===================================
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@mixin animate-slide-up($duration: $duration-slow) {
+  animation: slide-up $duration $ease-out-quart;
+}
+
+// ===================================
+// Slide In From Right
+// ===================================
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@mixin animate-slide-in-right($duration: $duration-slow) {
+  animation: slide-in-right $duration $ease-out-quart;
+}
+
+// ===================================
+// Skeleton Shimmer
+// ===================================
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@mixin skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--bg-tertiary) 0%,
+    var(--bg-secondary) 50%,
+    var(--bg-tertiary) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+// ===================================
+// Spinner Rotation
+// ===================================
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin animate-spin($duration: 1s) {
+  animation: spin $duration linear infinite;
+}
+
+// ===================================
+// Reduced Motion Support
+// ===================================
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+    transition: none !important;
+  }
+}

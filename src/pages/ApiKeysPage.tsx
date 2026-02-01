@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Card } from '@/components/ui/Card';
+import { GlassCard } from '@/components/common/GlassCard/GlassCard';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
@@ -167,7 +167,11 @@ export function ApiKeysPage() {
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>{t('api_keys.title')}</h1>
 
-      <Card title={t('api_keys.proxy_auth_title')} extra={actionButtons}>
+      <GlassCard>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+          <h2 style={{ margin: 0, fontSize: 18, fontWeight: 600 }}>{t('api_keys.proxy_auth_title')}</h2>
+          {actionButtons}
+        </div>
         {error && <div className="error-box">{error}</div>}
 
         {loading ? (
@@ -240,7 +244,7 @@ export function ApiKeysPage() {
             disabled={saving}
           />
         </Modal>
-      </Card>
+      </GlassCard>
     </div>
   );
 }

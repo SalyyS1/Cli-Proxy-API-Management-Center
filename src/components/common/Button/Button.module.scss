@@ -1,0 +1,109 @@
+@use '@/styles/design-tokens' as tokens;
+@use '@/styles/animation-utils' as anim;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: tokens.$space-2;
+  font-family: tokens.$font-display;
+  font-weight: tokens.$font-weight-medium;
+  border-radius: tokens.$radius-md;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    background-color 150ms ease,
+    transform 100ms ease,
+    box-shadow 150ms ease,
+    border-color 150ms ease;
+
+  @media (prefers-reduced-motion: no-preference) {
+    &:active:not(:disabled) {
+      transform: scale(0.97);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Sizes
+.sm {
+  padding: tokens.$space-2 tokens.$space-3;
+  font-size: tokens.$font-size-sm;
+}
+
+.md {
+  padding: tokens.$space-3 tokens.$space-4;
+  font-size: tokens.$font-size-base;
+}
+
+.lg {
+  padding: tokens.$space-4 tokens.$space-6;
+  font-size: tokens.$font-size-lg;
+}
+
+// Variants
+.primary {
+  background: var(--primary-color);
+  color: white;
+
+  &:hover:not(:disabled) {
+    background: var(--primary-hover);
+  }
+}
+
+.secondary {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+
+  &:hover:not(:disabled) {
+    background: var(--bg-secondary);
+    border-color: var(--border-hover);
+  }
+}
+
+.ghost {
+  background: transparent;
+  color: var(--text-primary);
+
+  &:hover:not(:disabled) {
+    background: var(--bg-tertiary);
+  }
+}
+
+.danger {
+  background: var(--error-color);
+  color: white;
+
+  &:hover:not(:disabled) {
+    background: #dc2626;
+  }
+}
+
+// Loading state
+.loading {
+  position: relative;
+  color: transparent;
+
+  .spinner {
+    position: absolute;
+  }
+
+  .label {
+    visibility: hidden;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+}

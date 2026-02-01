@@ -1,0 +1,136 @@
+/**
+ * Glassmorphism Mixins
+ * SCSS mixins for glass effect with backdrop-filter, tinted variants, and fallbacks
+ */
+
+@use './design-tokens.scss' as tokens;
+
+// ===================================
+// Base Glass Mixin
+// ===================================
+@mixin glass($blur: tokens.$glass-blur-normal, $alpha: 0.15, $border-alpha: 0.125) {
+  background: rgba(255, 255, 255, $alpha);
+  backdrop-filter: blur($blur) saturate(tokens.$glass-saturate);
+  -webkit-backdrop-filter: blur($blur) saturate(tokens.$glass-saturate);
+  border: 1px solid rgba(255, 255, 255, $border-alpha);
+  box-shadow: tokens.$shadow-glass;
+
+  [data-theme='dark'] & {
+    background: rgba(0, 0, 0, $alpha * 2);
+    border-color: rgba(255, 255, 255, $border-alpha * 0.6);
+  }
+}
+
+// ===================================
+// Glass with Fallback (WCAG AA)
+// ===================================
+@mixin glass-with-fallback($blur: tokens.$glass-blur-normal, $alpha: 0.15) {
+  // Fallback for browsers without backdrop-filter support
+  background: rgba(255, 255, 255, 0.9);
+
+  @supports (backdrop-filter: blur($blur)) {
+    background: rgba(255, 255, 255, $alpha);
+    backdrop-filter: blur($blur) saturate(tokens.$glass-saturate);
+    -webkit-backdrop-filter: blur($blur) saturate(tokens.$glass-saturate);
+  }
+
+  [data-theme='dark'] & {
+    background: rgba(0, 0, 0, 0.9);
+
+    @supports (backdrop-filter: blur($blur)) {
+      background: rgba(0, 0, 0, $alpha * 2);
+    }
+  }
+}
+
+// ===================================
+// Glass Card Variant
+// ===================================
+@mixin glass-card($elevated: false) {
+  @include glass();
+  border-radius: tokens.$radius-md;
+
+  @if $elevated {
+    box-shadow: tokens.$shadow-elevated;
+  }
+}
+
+// ===================================
+// Glass Emerald Tint
+// ===================================
+@mixin glass-emerald($alpha: 0.15) {
+  background: rgba(16, 185, 129, $alpha);
+  backdrop-filter: blur(tokens.$glass-blur-normal) saturate(tokens.$glass-saturate);
+  -webkit-backdrop-filter: blur(tokens.$glass-blur-normal) saturate(tokens.$glass-saturate);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15);
+
+  [data-theme='dark'] & {
+    background: rgba(16, 185, 129, $alpha * 1.5);
+    border-color: rgba(16, 185, 129, 0.4);
+  }
+}
+
+// ===================================
+// Glass Teal Tint
+// ===================================
+@mixin glass-teal($alpha: 0.15) {
+  background: rgba(20, 184, 166, $alpha);
+  backdrop-filter: blur(tokens.$glass-blur-normal) saturate(tokens.$glass-saturate);
+  -webkit-backdrop-filter: blur(tokens.$glass-blur-normal) saturate(tokens.$glass-saturate);
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  box-shadow: 0 8px 32px rgba(20, 184, 166, 0.15);
+
+  [data-theme='dark'] & {
+    background: rgba(20, 184, 166, $alpha * 1.5);
+    border-color: rgba(20, 184, 166, 0.4);
+  }
+}
+
+// ===================================
+// Glass Modal Overlay
+// ===================================
+@mixin glass-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  [data-theme='dark'] & {
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+// ===================================
+// Glass Input
+// ===================================
+@mixin glass-input {
+  @include glass(tokens.$glass-blur-subtle, 0.1, 0.1);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+
+  &:focus {
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    outline: none;
+  }
+
+  &:hover:not(:focus) {
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+}
+
+// ===================================
+// Gradient Backgrounds
+// ===================================
+@mixin gradient-emerald-teal {
+  background: linear-gradient(135deg, tokens.$emerald-500 0%, tokens.$teal-500 100%);
+}
+
+@mixin gradient-glass {
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.2) 0%,
+    rgba(20, 184, 166, 0.2) 100%
+  );
+  backdrop-filter: blur(tokens.$glass-blur-normal);
+  -webkit-backdrop-filter: blur(tokens.$glass-blur-normal);
+}

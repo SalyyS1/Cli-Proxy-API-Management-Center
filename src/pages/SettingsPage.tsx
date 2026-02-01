@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Card } from '@/components/ui/Card';
+import { GlassCard } from '@/components/common/GlassCard/GlassCard';
 import { ToggleSwitch } from '@/components/ui/ToggleSwitch';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
@@ -254,7 +254,7 @@ export function SettingsPage() {
       <h1 className={styles.pageTitle}>{t('basic_settings.title')}</h1>
 
       <div className={styles.grid}>
-        <Card>
+        <GlassCard>
           {error && <div className="error-box">{error}</div>}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <ToggleSwitch
@@ -326,9 +326,10 @@ export function SettingsPage() {
               }
             />
           </div>
-        </Card>
+        </GlassCard>
 
-      <Card title={t('basic_settings.proxy_title')}>
+      <GlassCard>
+        <h3 style={{ margin: '0 0 16px 0', fontSize: 16, fontWeight: 600 }}>{t('basic_settings.proxy_title')}</h3>
         <Input
           label={t('basic_settings.proxy_url_label')}
           placeholder={t('basic_settings.proxy_url_placeholder')}
@@ -344,9 +345,10 @@ export function SettingsPage() {
             {t('basic_settings.proxy_update')}
           </Button>
         </div>
-      </Card>
+      </GlassCard>
 
-      <Card title={t('basic_settings.retry_title')}>
+      <GlassCard>
+        <h3 style={{ margin: '0 0 16px 0', fontSize: 16, fontWeight: 600 }}>{t('basic_settings.retry_title')}</h3>
         <div className={styles.retryRow}>
           <Input
             label={t('basic_settings.retry_count_label')}
@@ -368,9 +370,10 @@ export function SettingsPage() {
             {t('basic_settings.retry_update')}
           </Button>
         </div>
-      </Card>
+      </GlassCard>
 
-      <Card title={t('basic_settings.logs_max_total_size_title')}>
+      <GlassCard>
+        <h3 style={{ margin: '0 0 16px 0', fontSize: 16, fontWeight: 600 }}>{t('basic_settings.logs_max_total_size_title')}</h3>
         <div className={`${styles.retryRow} ${styles.retryRowAligned} ${styles.retryRowInputGrow}`}>
           <Input
             label={t('basic_settings.logs_max_total_size_label')}
@@ -393,9 +396,10 @@ export function SettingsPage() {
             {t('basic_settings.logs_max_total_size_update')}
           </Button>
         </div>
-      </Card>
+      </GlassCard>
 
-      <Card title={t('basic_settings.routing_title')}>
+      <GlassCard>
+        <h3 style={{ margin: '0 0 16px 0', fontSize: 16, fontWeight: 600 }}>{t('basic_settings.routing_title')}</h3>
         <div className={`${styles.retryRow} ${styles.retryRowAligned} ${styles.retryRowInputGrow}`}>
           <div className="form-group">
             <label>{t('basic_settings.routing_strategy_label')}</label>
@@ -419,9 +423,10 @@ export function SettingsPage() {
             {t('basic_settings.routing_strategy_update')}
           </Button>
         </div>
-      </Card>
+      </GlassCard>
 
-      <Card title={t('basic_settings.quota_title')}>
+      <GlassCard>
+        <h3 style={{ margin: '0 0 16px 0', fontSize: 16, fontWeight: 600 }}>{t('basic_settings.quota_title')}</h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <ToggleSwitch
             label={t('basic_settings.quota_switch_project')}
@@ -470,7 +475,7 @@ export function SettingsPage() {
             }
           />
         </div>
-      </Card>
+      </GlassCard>
       </div>
     </div>
   );

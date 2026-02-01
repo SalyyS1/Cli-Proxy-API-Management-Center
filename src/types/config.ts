@@ -12,6 +12,7 @@ export interface QuotaExceededConfig {
 }
 
 export interface Config {
+  // Existing settings
   debug?: boolean;
   proxyUrl?: string;
   requestRetry?: number;
@@ -31,6 +32,36 @@ export interface Config {
   vertexApiKeys?: ProviderKeyConfig[];
   openaiCompatibility?: OpenAIProviderConfig[];
   oauthExcludedModels?: Record<string, string[]>;
+
+  // NEW: Server settings
+  host?: string;
+  port?: number;
+  tlsEnabled?: boolean;
+  tlsCert?: string;
+  tlsKey?: string;
+  commercialMode?: boolean;
+
+  // NEW: Management settings
+  allowRemote?: boolean;
+  disableControlPanel?: boolean;
+  panelGithubRepository?: string;
+
+  // NEW: Auth settings
+  authDir?: string;
+  incognitoBrowser?: boolean;
+
+  // NEW: Logging settings (errorLogsMaxFiles new)
+  errorLogsMaxFiles?: number;
+
+  // NEW: Performance settings
+  maxRetryInterval?: number;
+  nonstreamKeepaliveInterval?: number;
+  streamingKeepaliveSeconds?: number;
+  streamingBootstrapRetries?: number;
+
+  // NEW: Feature settings
+  codexInstructionsEnabled?: boolean;
+
   raw?: Record<string, any>;
 }
 
@@ -53,7 +84,30 @@ export type RawConfigSection =
   | 'claude-api-key'
   | 'vertex-api-key'
   | 'openai-compatibility'
-  | 'oauth-excluded-models';
+  | 'oauth-excluded-models'
+  // NEW: Server settings
+  | 'host'
+  | 'port'
+  | 'tls-enabled'
+  | 'tls-cert'
+  | 'tls-key'
+  | 'commercial-mode'
+  // NEW: Management settings
+  | 'allow-remote'
+  | 'disable-control-panel'
+  | 'panel-github-repository'
+  // NEW: Auth settings
+  | 'auth-dir'
+  | 'incognito-browser'
+  // NEW: Logging settings
+  | 'error-logs-max-files'
+  // NEW: Performance settings
+  | 'max-retry-interval'
+  | 'nonstream-keepalive-interval'
+  | 'streaming-keepalive-seconds'
+  | 'streaming-bootstrap-retries'
+  // NEW: Feature settings
+  | 'codex-instructions-enabled';
 
 export interface ConfigCache {
   data: Config;

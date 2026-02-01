@@ -1,0 +1,53 @@
+@use '@/styles/design-tokens' as tokens;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: tokens.$font-display;
+  font-weight: tokens.$font-weight-medium;
+  border-radius: tokens.$radius-full;
+  white-space: nowrap;
+}
+
+// Sizes
+.sm {
+  padding: tokens.$space-1 tokens.$space-2;
+  font-size: tokens.$font-size-xs;
+}
+
+.md {
+  padding: tokens.$space-1 tokens.$space-3;
+  font-size: tokens.$font-size-sm;
+}
+
+// Variants
+.success {
+  background: rgba(16, 185, 129, 0.15);
+  color: tokens.$emerald-500;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.error {
+  background: rgba(239, 68, 68, 0.15);
+  color: tokens.$color-error;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.warning {
+  background: rgba(245, 158, 11, 0.15);
+  color: tokens.$color-warning;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.info {
+  background: rgba(20, 184, 166, 0.15);
+  color: tokens.$teal-500;
+  border: 1px solid rgba(20, 184, 166, 0.3);
+}
+
+.neutral {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}

@@ -1,13 +1,16 @@
 /**
- * SCSS 变量定义
+ * SCSS 变量定义 (SCSS Variables)
+ * Import design tokens and define backward-compatible variables
  */
 
-// 颜色
-$primary-color: #3b82f6;
-$success-color: #10b981;
-$warning-color: #f59e0b;
-$error-color: #ef4444;
-$info-color: #3b82f6;
+@use './design-tokens.scss' as tokens;
+
+// 颜色 (Colors) - Updated to emerald/teal
+$primary-color: tokens.$emerald-500;
+$success-color: tokens.$emerald-500;
+$warning-color: tokens.$color-warning;
+$error-color: tokens.$color-error;
+$info-color: tokens.$teal-500;
 
 // 灰阶
 $gray-50: #f9fafb;

@@ -32,10 +32,7 @@
   align-items: center;
   justify-content: space-between;
   gap: $spacing-md;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: $radius-lg;
-  padding: $spacing-md $spacing-lg;
+  padding: $spacing-md $spacing-lg !important;
   flex-wrap: wrap;
 }
 
@@ -112,35 +109,26 @@
 }
 
 .statsGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: $spacing-md;
-
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 500px) {
-    grid-template-columns: 1fr;
-  }
+  // BentoGrid handles the grid layout, no need for duplicate grid properties
 }
 
 .statCard {
+  display: block;
+  text-decoration: none;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.statCardGlass {
   display: flex;
   align-items: center;
   gap: $spacing-md;
   padding: $spacing-lg;
-  background: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: $radius-lg;
-  text-decoration: none;
+  height: 100%;
   transition: all $transition-fast;
-
-  &:hover {
-    border-color: var(--primary-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
-  }
 }
 
 .statIcon {

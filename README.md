@@ -4,13 +4,27 @@ A single-file WebUI (React + TypeScript) for operating and troubleshooting the *
 
 [中文文档](README_CN.md)
 
-**Main Project**: https://github.com/router-for-me/CLIProxyAPI  
-**Example URL**: https://remote.router-for.me/  
+**Main Project**: https://github.com/router-for-me/CLIProxyAPI
+**Example URL**: https://remote.router-for.me/
 **Minimum Required Version**: ≥ 6.3.0 (recommended ≥ 6.5.0)
 
 Since version 6.0.19, the WebUI ships with the main program; access it via `/management.html` on the API port once the service is running.
 
-## What this is (and isn’t)
+## Recent Updates (v2.0)
+
+The WebUI has been completely redesigned with modern glassmorphism styling and enhanced features:
+
+- **Modern Design**: Glassmorphism UI with emerald/teal gradient theme
+- **Enhanced Analytics**: Gradient area charts with better data visualization
+- **GitHub Copilot OAuth**: Full device flow integration for Copilot authentication
+- **New Activity Page**: Real-time request monitoring and logging
+- **Expanded Settings**: All CLIProxyAPIPlus configuration options now exposed
+- **Improved Dark/Light Modes**: Better contrast and readability
+- **GSAP Animations**: Smooth page transitions and interactive animations
+- **Accessibility**: WCAG AA compliant with keyboard navigation support
+- **Bundle Size**: Single-file HTML (~1.7MB raw, 546KB gzipped)
+
+## What this is (and isn't)
 
 - This repository is the WebUI only. It talks to the CLI Proxy API **Management API** (`/v0/management`) to read/update config, upload credentials, view logs, and inspect usage.
 - It is **not** a proxy and does not forward traffic.

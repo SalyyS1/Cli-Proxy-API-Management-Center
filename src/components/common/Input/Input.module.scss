@@ -1,0 +1,82 @@
+@use '@/styles/design-tokens' as tokens;
+@use '@/styles/glass-mixins' as glass;
+@use '@/styles/animation-utils' as anim;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-1;
+}
+
+.inputWrapper {
+  position: relative;
+  @include glass.glass-card();
+  padding: tokens.$space-3 tokens.$space-4;
+  @include anim.transition-colors;
+
+  &.focused {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1);
+  }
+
+  &.error {
+    border-color: var(--error-color);
+
+    &.focused {
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: tokens.$font-display;
+  font-size: tokens.$font-size-base;
+  color: var(--text-primary);
+  padding-top: tokens.$space-4;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.label {
+  position: absolute;
+  left: tokens.$space-4;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: tokens.$font-size-base;
+  color: var(--text-secondary);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  transform-origin: left center;
+}
+
+.floating .label,
+.inputWrapper:focus-within .label {
+  top: tokens.$space-2;
+  transform: translateY(0) scale(0.85);
+  color: var(--primary-color);
+}
+
+.error .label {
+  color: var(--error-color);
+}
+
+.errorMessage {
+  font-size: tokens.$font-size-sm;
+  color: var(--error-color);
+  padding-left: tokens.$space-1;
+}

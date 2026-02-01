@@ -1,0 +1,68 @@
+@use '@/styles/design-tokens' as tokens;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-4;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: tokens.$space-4;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.icon {
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.info {
+  flex: 1;
+}
+
+.title {
+  font-size: tokens.$font-size-lg;
+  font-weight: tokens.$font-weight-semibold;
+  color: var(--text-primary);
+  margin: 0 0 tokens.$space-1;
+}
+
+.description {
+  font-size: tokens.$font-size-sm;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.status {
+  flex-shrink: 0;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: tokens.$space-2;
+  padding: tokens.$space-3;
+  background: var(--bg-tertiary);
+  border-radius: tokens.$radius-sm;
+}
+
+.accountLabel {
+  font-size: tokens.$font-size-sm;
+  color: var(--text-secondary);
+}
+
+.accountName {
+  font-weight: tokens.$font-weight-medium;
+  color: var(--text-primary);
+}
+
+.actions {
+  display: flex;
+  gap: tokens.$space-3;
+  flex-wrap: wrap;
+}

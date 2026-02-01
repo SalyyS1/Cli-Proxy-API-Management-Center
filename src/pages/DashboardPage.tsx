@@ -7,6 +7,8 @@ import {
   IconFileText,
   IconSatellite
 } from '@/components/ui/icons';
+import { BentoGrid, BentoItem } from '@/components/layout/BentoGrid/BentoGrid';
+import { GlassCard } from '@/components/common/GlassCard/GlassCard';
 import { useAuthStore, useConfigStore, useModelsStore } from '@/stores';
 import { apiKeysApi, providersApi, authFilesApi } from '@/services/api';
 import styles from './DashboardPage.module.scss';
@@ -219,7 +221,7 @@ export function DashboardPage() {
         <p className={styles.subtitle}>{t('dashboard.subtitle')}</p>
       </div>
 
-      <div className={styles.connectionCard}>
+      <GlassCard variant="emerald" className={styles.connectionCard}>
         <div className={styles.connectionStatus}>
           <span
             className={`${styles.statusDot} ${
@@ -253,65 +255,71 @@ export function DashboardPage() {
             </span>
           )}
         </div>
-      </div>
+      </GlassCard>
 
-      <div className={styles.statsGrid}>
+      <BentoGrid columns={4} gap="md" className={styles.statsGrid}>
         {quickStats.map((stat) => (
-          <Link key={stat.path} to={stat.path} className={styles.statCard}>
-            <div className={styles.statIcon}>{stat.icon}</div>
-            <div className={styles.statContent}>
-              <span className={styles.statValue}>{stat.loading ? '...' : stat.value}</span>
-              <span className={styles.statLabel}>{stat.label}</span>
-              {stat.sublabel && !stat.loading && (
-                <span className={styles.statSublabel}>{stat.sublabel}</span>
-              )}
-            </div>
-          </Link>
+          <BentoItem key={stat.path}>
+            <Link to={stat.path} className={styles.statCard}>
+              <GlassCard variant="interactive" className={styles.statCardGlass}>
+                <div className={styles.statIcon}>{stat.icon}</div>
+                <div className={styles.statContent}>
+                  <span className={styles.statValue}>{stat.loading ? '...' : stat.value}</span>
+                  <span className={styles.statLabel}>{stat.label}</span>
+                  {stat.sublabel && !stat.loading && (
+                    <span className={styles.statSublabel}>{stat.sublabel}</span>
+                  )}
+                </div>
+              </GlassCard>
+            </Link>
+          </BentoItem>
         ))}
-      </div>
+      </BentoGrid>
 
       {config && (
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>{t('dashboard.current_config')}</h2>
-          <div className={styles.configGrid}>
-            <div className={styles.configItem}>
-              <span className={styles.configLabel}>{t('basic_settings.debug_enable')}</span>
-              <span className={`${styles.configValue} ${config.debug ? styles.enabled : styles.disabled}`}>
-                {config.debug ? t('common.yes') : t('common.no')}
-              </span>
-            </div>
-            <div className={styles.configItem}>
-              <span className={styles.configLabel}>{t('basic_settings.usage_statistics_enable')}</span>
-              <span className={`${styles.configValue} ${config.usageStatisticsEnabled ? styles.enabled : styles.disabled}`}>
-                {config.usageStatisticsEnabled ? t('common.yes') : t('common.no')}
-              </span>
-            </div>
-            <div className={styles.configItem}>
-              <span className={styles.configLabel}>{t('basic_settings.logging_to_file_enable')}</span>
-              <span className={`${styles.configValue} ${config.loggingToFile ? styles.enabled : styles.disabled}`}>
-                {config.loggingToFile ? t('common.yes') : t('common.no')}
-              </span>
-            </div>
-            <div className={styles.configItem}>
-              <span className={styles.configLabel}>{t('basic_settings.retry_count_label')}</span>
-              <span className={styles.configValue}>{config.requestRetry ?? 0}</span>
-            </div>
-            <div className={styles.configItem}>
-              <span className={styles.configLabel}>{t('basic_settings.ws_auth_enable')}</span>
-              <span className={`${styles.configValue} ${config.wsAuth ? styles.enabled : styles.disabled}`}>
-                {config.wsAuth ? t('common.yes') : t('common.no')}
-              </span>
-            </div>
-            {config.proxyUrl && (
-              <div className={`${styles.configItem} ${styles.configItemFull}`}>
-                <span className={styles.configLabel}>{t('basic_settings.proxy_url_label')}</span>
-                <span className={styles.configValueMono}>{config.proxyUrl}</span>
+          <GlassCard>
+            <div className={styles.configGrid}>
+              <div className={styles.configItem}>
+                <span className={styles.configLabel}>{t('basic_settings.debug_enable')}</span>
+                <span className={`${styles.configValue} ${config.debug ? styles.enabled : styles.disabled}`}>
+                  {config.debug ? t('common.yes') : t('common.no')}
+                </span>
               </div>
-            )}
-          </div>
-          <Link to="/settings" className={styles.viewMoreLink}>
-            {t('dashboard.edit_settings')} →
-          </Link>
+              <div className={styles.configItem}>
+                <span className={styles.configLabel}>{t('basic_settings.usage_statistics_enable')}</span>
+                <span className={`${styles.configValue} ${config.usageStatisticsEnabled ? styles.enabled : styles.disabled}`}>
+                  {config.usageStatisticsEnabled ? t('common.yes') : t('common.no')}
+                </span>
+              </div>
+              <div className={styles.configItem}>
+                <span className={styles.configLabel}>{t('basic_settings.logging_to_file_enable')}</span>
+                <span className={`${styles.configValue} ${config.loggingToFile ? styles.enabled : styles.disabled}`}>
+                  {config.loggingToFile ? t('common.yes') : t('common.no')}
+                </span>
+              </div>
+              <div className={styles.configItem}>
+                <span className={styles.configLabel}>{t('basic_settings.retry_count_label')}</span>
+                <span className={styles.configValue}>{config.requestRetry ?? 0}</span>
+              </div>
+              <div className={styles.configItem}>
+                <span className={styles.configLabel}>{t('basic_settings.ws_auth_enable')}</span>
+                <span className={`${styles.configValue} ${config.wsAuth ? styles.enabled : styles.disabled}`}>
+                  {config.wsAuth ? t('common.yes') : t('common.no')}
+                </span>
+              </div>
+              {config.proxyUrl && (
+                <div className={`${styles.configItem} ${styles.configItemFull}`}>
+                  <span className={styles.configLabel}>{t('basic_settings.proxy_url_label')}</span>
+                  <span className={styles.configValueMono}>{config.proxyUrl}</span>
+                </div>
+              )}
+            </div>
+            <Link to="/settings" className={styles.viewMoreLink}>
+              {t('dashboard.edit_settings')} →
+            </Link>
+          </GlassCard>
         </div>
       )}
     </div>

@@ -1,0 +1,136 @@
+@use '@/styles/design-tokens' as tokens;
+@use '@/styles/glass-mixins' as glass;
+@use '@/styles/animation-utils' as anim;
+
+.container {
+  @include glass.glass-card();
+  overflow: hidden;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.thead {
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.th {
+  padding: tokens.$space-3 tokens.$space-4;
+  text-align: left;
+  font-size: tokens.$font-size-sm;
+  font-weight: tokens.$font-weight-semibold;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &.sortable {
+    cursor: pointer;
+    user-select: none;
+    @include anim.transition-colors;
+
+    &:hover {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+  }
+}
+
+.thContent {
+  display: flex;
+  align-items: center;
+  gap: tokens.$space-2;
+}
+
+.sortIcon {
+  font-size: tokens.$font-size-xs;
+  opacity: 0.6;
+}
+
+.tbody {
+  .tr {
+    border-bottom: 1px solid var(--border-color);
+    @include anim.transition-colors;
+
+    &:hover {
+      background: var(--bg-tertiary);
+    }
+
+    &.clickable {
+      cursor: pointer;
+
+      &:focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: -2px;
+      }
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.td {
+  padding: tokens.$space-4;
+  font-size: tokens.$font-size-sm;
+  color: var(--text-primary);
+}
+
+.loadingCell,
+.emptyCell {
+  padding: tokens.$space-8;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.loadingCell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: tokens.$space-4;
+  padding: tokens.$space-4;
+  border-top: 1px solid var(--border-color);
+}
+
+.pageButton {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: tokens.$space-2 tokens.$space-3;
+  border-radius: tokens.$radius-sm;
+  cursor: pointer;
+  @include anim.transition-colors;
+
+  &:hover:not(:disabled) {
+    background: var(--bg-secondary);
+    border-color: var(--primary-color);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+}
+
+.pageInfo {
+  font-size: tokens.$font-size-sm;
+  color: var(--text-secondary);
+}
